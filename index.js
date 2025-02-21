@@ -1,5 +1,4 @@
 const express = require('express');
-const port = 4000;
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -12,6 +11,8 @@ const vendorRoutes = require('./routes/vendorRoutes');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
 const path = require('path');
+
+const port = process.env.PORT||4000;
 
 app.use(express.json());
 
@@ -33,7 +34,7 @@ app.use('/uploads', express.static( 'uploads'));
 
 
 
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
     console.log('home page');
     res.send('<h1>hello world</h1>');
 });
